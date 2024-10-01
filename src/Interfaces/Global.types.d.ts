@@ -6,4 +6,5 @@ interface INavbarItem {
   id: number;
   text: string;
   path: string;
+  icon: string;
 }

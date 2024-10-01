@@ -13,20 +13,20 @@ const ItemsMenu = ({ item }: ItemsMenuProps) => {
   return (
     <li>
       <div
-        className={cls(
-          "py-2 flex space-between items-center w-full hover: cursor-pointer",
-          {
-            "border-r-4 border-red1 bg-gradient-to-r from-transparent to-red2 ":
-              pathname === `${item.path}`,
-          }
-        )}
+        className={cls("py-1 flex space-between w-full hover: cursor-pointer", {
+          "border-r-4 border-red1 bg-gradient-to-r from-transparent to-red2 ":
+            pathname === `${item.path}`,
+        })}
         onClick={() => navigate(item.path)}
         style={{ backgroundSize: "500% 1%" }}
       >
         <span
-          className={cls("text-gray2 w-full pl-4 hover:text-red2", {
-            "text-red2": pathname === `${item.path}`,
-          })}
+          className={cls(
+            "flex text-gray2 w-full pl-4 whitespace-normal inline-block hover:text-red2",
+            {
+              "text-red2": pathname === `${item.path}`,
+            }
+          )}
         >
           {item.text}
         </span>
