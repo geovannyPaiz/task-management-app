@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "SF";
+  src: url("./Assets/fonts/SFPRODISPLAYREGULAR.OTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

@@ -13,6 +13,9 @@ module.exports = {
       textColor: {
         "custom-white": "#ffffff",
       },
+      fontFamily: {
+        sf: ["SF", "sans-serif"],
+      },
     },
   },
   plugins: [],
