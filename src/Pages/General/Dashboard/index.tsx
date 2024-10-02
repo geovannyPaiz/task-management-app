@@ -1,6 +1,6 @@
 import { SearchBar } from "Components/organisms/SearchBar";
 import { TabTopBar } from "Components/organisms/TabTopBar";
-
+import PoolTask from "./partials/PoolTask/PoolTask";
 import useDashboard from "./hook";
 
 export const Dashboard = () => {
@@ -19,6 +19,7 @@ export const Dashboard = () => {
         onChange={(valueTab: number) => setTab(valueTab)}
         loading={loading}
       />
+      <PoolTask />
     </div>
   );
 };
