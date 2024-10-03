@@ -1,14 +1,18 @@
 interface TaskCardFooterProps {
   diagram: number;
   comment: number;
+  user: {
+    avatar: string;
+  };
 }
 
-const TaskCardFooter = ({ diagram, comment }: TaskCardFooterProps) => {
+const TaskCardFooter = ({ diagram, comment, user }: TaskCardFooterProps) => {
   return (
     <div className="flex flex-row w-full justify-between">
       <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSXHO9HdR32K85UdK-eKOu3X4bQg7zIsb76g&s"
+        src={user.avatar}
         className="h-8 w-8 rounded-[32px]"
+        alt="no imagen"
       />
       <div className="flex flex-row items-center gap-x-2">
         <i className="fa-solid fa-paperclip h-4 w-4" />

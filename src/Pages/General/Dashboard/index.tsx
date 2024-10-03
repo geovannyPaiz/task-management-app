@@ -4,13 +4,13 @@ import PoolTask from "./partials/PoolTask/PoolTask";
 import useDashboard from "./hook";
 
 export const Dashboard = () => {
-  const { value, setValue, setLoading, setSearch, tab, setTab, loading } =
+  const { value, setValue, setSearch, tab, setTab, loading, poolTask } =
     useDashboard();
   return (
     <div className="flex flex-col h-full w-full gap-y-8">
       <SearchBar
         value={value}
-        setLoading={setLoading}
+        setLoading={() => {}}
         onChange={(valueToSet: string) => setValue(valueToSet)}
         onSearch={(valueToSearch: string) => setSearch(valueToSearch)}
       />
@@ -19,7 +19,17 @@ export const Dashboard = () => {
         onChange={(valueTab: number) => setTab(valueTab)}
         loading={loading}
       />
-      <PoolTask />
+      {poolTask && (
+        <div className="flex flex-row gap-x-8 w-full overflow-x-auto">
+          {poolTask.map((element, index) => (
+            <PoolTask
+              title={element.status}
+              taskList={element.tasks}
+              key={index}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
