@@ -1,13 +1,18 @@
 import cls from "classnames";
 import { Button } from "Components/atoms/Button";
-
 interface TabTopBarProps {
   value: number;
   onChange: (value: number) => void;
   loading: boolean;
+  setShowModal: (value: boolean) => void;
 }
 
-const TabTopBar = ({ value, onChange, loading }: TabTopBarProps) => {
+const TabTopBar = ({
+  value,
+  onChange,
+  loading,
+  setShowModal,
+}: TabTopBarProps) => {
   return (
     <div className="flex flex-row w-full h-12 justify-between">
       <div className="flex flex-row">
@@ -30,7 +35,12 @@ const TabTopBar = ({ value, onChange, loading }: TabTopBarProps) => {
           onClick={() => onChange(1)}
         />
       </div>
-      <Button onClick={() => {}} loading={loading} icon="fa-solid fa-plus" />
+      <Button
+        onClick={() => setShowModal(true)}
+        loading={loading}
+        icon="fa-solid fa-plus"
+        type="primary"
+      />
     </div>
   );
 };

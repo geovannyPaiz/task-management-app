@@ -7,6 +7,7 @@ module.exports = {
         "custom-bg": "#222528",
         gray1: "#2C2F33",
         gray2: "#94979A",
+        gray3: "#393D41",
         red1: "#DA584B",
         red2: "#D24D4D",
         green1: "#70B252",

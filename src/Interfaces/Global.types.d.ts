@@ -36,3 +36,17 @@ interface PoolTask {
   status: string;
   tasks: Task[];
 }
+
+interface ModalProps extends ChildrenJsxProp {
+  onSave: () => void;
+  onCancel: () => void;
+  loading?: boolean;
+  labelSaveButton: string;
+  visible: boolean;
+}
+
+interface OptionsDropdown {
+  label: string;
+  value: number | string;
+  avatar?: string;
+}

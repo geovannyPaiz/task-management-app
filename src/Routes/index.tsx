@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "Components/Templates";
 import { menuItems } from "Constants/MenuItems";
-import { Loader } from "Components/atoms"; // Importa un componente de carga.
+import { Loader } from "Components/atoms";
 
 const Welcome = lazy(() => import("../Pages/General/Welcome"));
 const Dashboard = lazy(() => import("../Pages/General/Dashboard"));

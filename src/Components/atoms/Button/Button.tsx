@@ -4,16 +4,26 @@ interface ButtonProps {
   icon?: string;
   label?: string;
   onClick: () => void;
-  loading: boolean;
+  loading?: boolean;
+  type?: "primary" | "normal";
 }
 
-const Button = ({ loading, onClick, icon, label }: ButtonProps) => {
+const Button = ({
+  loading,
+  onClick,
+  icon,
+  label,
+  type = "primary",
+}: ButtonProps) => {
   return (
     <div
       className={cls(
-        "h-10 w-10 flex justify-center items-center bg-red2 rounded-[8px] hover:opacity-50 cursor-pointer",
+        "flex h-10 w-10 justify-center items-center rounded-[8px] hover:opacity-50 cursor-pointer",
         {
           "pointer-events-none opacity-50": loading,
+          "bg-transparent": type === "normal",
+          "bg-red2": type === "primary",
+          "w-auto px-2": label,
         }
       )}
       onClick={onClick}

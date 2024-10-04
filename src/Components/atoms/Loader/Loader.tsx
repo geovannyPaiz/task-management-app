@@ -11,17 +11,9 @@ const Loader = ({
   className = "",
   visible = false,
 }: LoaderProps) => (
-  <div
-    className={classNames(
-      "w-full h-full flex justify-center items-center",
-      className,
-      {
-        hidden: !visible,
-      }
-    )}
-  >
+  <div className={classNames("w-full h-full flex justify-center items-center")}>
     <i
-      className={`fa-duotone fa-spinner-third fa-spin text-red1`}
+      className={`fas fa-spinner fa-spin text-red1`}
       style={{ fontSize: size }}
     />
   </div>

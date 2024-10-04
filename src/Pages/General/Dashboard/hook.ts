@@ -8,6 +8,7 @@ const useDashboard = () => {
   const [tab, setTab] = useState(0);
   const { loading, data } = useQuery(GET_TASK);
   const [poolTask, setPoolTask] = useState<PoolTask[]>([]);
+  const [showModal, setShowModal] = useState(false);
 
   const groupTasksByStatus = (tasks: Task[]) => {
     return tasks.reduce((acc, task) => {
@@ -44,6 +45,8 @@ const useDashboard = () => {
     tab,
     setTab,
     poolTask,
+    showModal,
+    setShowModal,
   };
 };
 export default useDashboard;
