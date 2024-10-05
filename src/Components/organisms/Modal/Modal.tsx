@@ -16,16 +16,11 @@ const Modal = ({
           <div
             className={`rounded-lg w-auto h-auto customScrol bg-gray3 py-2 gap-y-4`}
           >
-            <div className={"px-4 "}>{children}</div>
-            <div className={`flex flex-row justify-end px-4 gap-4`}>
+            <div className={"px-4 pt-4"}>{children}</div>
+            <div className={`flex flex-row justify-end px-4 gap-4 pb-4`}>
+              <Button onClick={() => onCancel()} label="Cancel" type="normal" />
               <Button
-                onClick={() => onCancel()}
-                loading={loading}
-                label="Cancel"
-                type="normal"
-              />
-              <Button
-                onClick={() => onSave()}
+                onClick={onSave}
                 loading={loading}
                 label={labelSaveButton}
               />

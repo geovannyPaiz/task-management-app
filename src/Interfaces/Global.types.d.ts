@@ -38,7 +38,7 @@ interface PoolTask {
 }
 
 interface ModalProps extends ChildrenJsxProp {
-  onSave: () => void;
+  onSave: ((task: Task) => Promise<void>) | (() => void);
   onCancel: () => void;
   loading?: boolean;
   labelSaveButton: string;

@@ -16,6 +16,8 @@ export const Dashboard = () => {
     poolTask,
     showModal,
     setShowModal,
+    saveTask,
+    createTaskLoading,
   } = useDashboard();
   return (
     <div className="flex flex-col h-full w-full gap-y-8">
@@ -52,9 +54,11 @@ export const Dashboard = () => {
       )}
       <ModalTask
         visible={showModal}
-        onSave={() => {}}
+        onSave={(task: Task) => saveTask(task)}
         onCancel={() => setShowModal(false)}
         labelSaveButton="Save"
+        title="Create task"
+        loading={createTaskLoading}
       />
     </div>
   );

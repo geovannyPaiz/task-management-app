@@ -1,9 +1,10 @@
 import cls from "classnames";
+import { MouseEventHandler } from "react";
 
 interface ButtonProps {
   icon?: string;
   label?: string;
-  onClick: () => void;
+  onClick: ((task: Task) => Promise<void>) | (() => void);
   loading?: boolean;
   type?: "primary" | "normal";
 }
@@ -26,7 +27,7 @@ const Button = ({
           "w-auto px-2": label,
         }
       )}
-      onClick={onClick}
+      onClick={onClick as MouseEventHandler<HTMLDivElement>}
     >
       {loading ? (
         <i

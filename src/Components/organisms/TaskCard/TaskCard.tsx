@@ -13,6 +13,7 @@ interface TaskCardProps {
   diagram: number;
   user: {
     avatar: string;
+    fullName: string;
   };
 }
 

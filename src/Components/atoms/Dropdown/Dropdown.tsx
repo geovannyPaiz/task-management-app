@@ -34,12 +34,12 @@ const Dropdown = ({ label, options, value, icon, onChange }: DropdownProps) => {
             alt="no imagen"
           />
         )}
-        {!value ? `${label}: ` : ""}
+        {!value ? `${label}` : ""}
         {value ? `${value.label}` : ""}
       </button>
 
       {isOpen && (
-        <ul className="absolute left-0 bg-gray3 text-white rounded-[8px] shadow-lg z-10">
+        <ul className="absolute left-0 bg-gray3 text-white rounded-[8px] shadow-lg z-10 min-w-[140px]">
           {options.map((option, index) => (
             <li
               key={option.value}

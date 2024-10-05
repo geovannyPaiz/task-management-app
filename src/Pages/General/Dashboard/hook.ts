@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_TASK } from "Services/Task";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_TASK, CREATE_TASK_MUTATION } from "Services/Task";
 
 const useDashboard = () => {
   const [value, setValue] = useState("");
@@ -9,6 +9,12 @@ const useDashboard = () => {
   const { loading, data } = useQuery(GET_TASK);
   const [poolTask, setPoolTask] = useState<PoolTask[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [createTask, { loading: createTaskLoading }] = useMutation(
+    CREATE_TASK_MUTATION,
+    {
+      refetchQueries: [{ query: GET_TASK }],
+    }
+  );
 
   const groupTasksByStatus = (tasks: Task[]) => {
     return tasks.reduce((acc, task) => {
@@ -34,7 +40,26 @@ const useDashboard = () => {
         groupTasksByStatus(tasks);
       }
     }
-  }, [loading]);
+  }, [loading, data]);
+
+  const saveTask = async (task: any) => {
+    try {
+      await createTask({
+        variables: {
+          input: {
+            name: task.name,
+            dueDate: task.dueDate,
+            pointEstimate: task.pointEstimate,
+            status: task.status,
+            tags: task.tags,
+            assignee: task.assignee,
+          },
+        },
+      });
+    } catch (e) {
+      console.error("Error creando la tarea:", e);
+    }
+  };
 
   return {
     value,
@@ -47,6 +72,8 @@ const useDashboard = () => {
     poolTask,
     showModal,
     setShowModal,
+    saveTask,
+    createTaskLoading,
   };
 };
 export default useDashboard;

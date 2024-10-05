@@ -1,0 +1,97 @@
+/* Personalización del input */
+.custom-input {
+  background-color: #222528;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+}
+
+/* Personalización general del calendario */
+.custom-calendar {
+  --rmdp-background: #1a1a1a; /* Fondo del calendario */
+  --rmdp-text-primary: white; /* Texto principal (nombres de días, meses) */
+  --rmdp-border-color: #333; /* Color de los bordes */
+  --rmdp-selected: #da584b; /* Color para la fecha seleccionada */
+  --rmdp-hover: #222528; /* Color cuando se pasa el mouse por una fecha */
+  --rmdp-day-disabled: #888; /* Color de los días deshabilitados */
+  --rmdp-text-secondary: #bbb; /* Texto secundario (días de otros meses) */
+  --rmdp-day-selected-focus: #da584b; /* Color cuando está seleccionado y con focus */
+  --rmdp-day-selected: #da584b; /* Cambia este valor para el círculo sel  */
+  --rmdp-primary-red: #da584b;
+}
+.custom-calendar input {
+  outline: none; /* Elimina el rombo blanco predeterminado */
+  box-shadow: none; /* Elimina cualquier sombra predeterminada */
+  border: 2px solid transparent; /* Añade un borde transparente por defecto */
+  transition: border 0.2s ease-in-out; /* Transición suave cuando cambia el focus */
+}
+
+/* Personalizar el texto de los días del calendario */
+.custom-calendar .rmdp-day {
+  color: var(--rmdp-text-primary);
+}
+
+.custom-calendar .rmdp-week-day {
+  color: var(--rmdp-text-primary);
+}
+
+.custom-calendar .rmdp-month {
+  color: var(--rmdp-text-primary);
+}
+
+/* Personalización del hover en los días */
+.custom-calendar .rmdp-day:hover {
+  background-color: var(--rmdp-hover);
+  color: white;
+}
+
+/* Personalización de la fecha seleccionada */
+.custom-calendar .rmdp-day.rmdp-selected {
+  background-color: var(--rmdp-selected);
+  color: white;
+}
+
+/* Personalización de días deshabilitados */
+.custom-calendar .rmdp-day.rmdp-disabled {
+  background-color: #2a2a2a;
+  color: var(--rmdp-day-disabled);
+}
+
+/* Personalización de los botones (siguiente, anterior) */
+.custom-calendar .rmdp-arrow-container {
+  background-color: transparent;
+  color: #222528;
+  border-radius: 5px;
+}
+
+.custom-calendar .rmdp-arrow {
+  border: solid var(--rmdp-primary-red);
+  border-width: 0 2px 2px 0;
+}
+
+.custom-calendar .rmdp-arrow-container:hover {
+  background-color: #222528;
+}
+
+/* Cambiar el color del círculo cuando el día está enfocado */
+.custom-calendar .rmdp-day:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--rmdp-day-selected-focus);
+}
+
+/* Cambiar el color del día que tiene focus y está seleccionado */
+.custom-calendar .rmdp-day.rmdp-selected:focus {
+  background-color: var(--rmdp-day-selected-focus);
+  color: white;
+}
+/* Cambiar el color del círculo cuando el día está seleccionado */
+.custom-calendar .rmdp-day.rmdp-selected {
+  background-color: var(--rmdp-day-selected);
+  color: white;
+}
+/* Cambiar el color del borde cuando el input está en focus (rombo rojo) */
+.custom-calendar input:focus {
+  border: 2px solid red; /* Cambiar el borde del input a rojo al hacer focus */
+  outline: none; /* Asegurarse de que no haya outline adicional */
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Opcional: agregar una sombra roja */
+}
