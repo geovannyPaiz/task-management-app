@@ -17,6 +17,7 @@ type TModalTask = {
   visible: boolean;
   title: string;
   loading: boolean;
+  task?: Task;
 } & ModalProps;
 
 const ModalTask = ({
@@ -25,6 +26,7 @@ const ModalTask = ({
   labelSaveButton,
   visible,
   loading: loadingSave,
+  task: taskUpdated,
 }: TModalTask) => {
   const [points, setPoints] = useState<OptionsDropdown>();
   const [user, setUser] = useState<OptionsDropdown>();
@@ -33,6 +35,19 @@ const ModalTask = ({
   const { loading, data } = useQuery(GET_USERS);
   const [listUsers, setListUsers] = useState<OptionsDropdown[]>();
   const [taskName, setTaskName] = useState("");
+  const pointsEstimate = [
+    { label: "1 Points", value: "ONE" },
+    { label: "2 Points", value: "TWO" },
+    { label: "4 Points", value: "FOUR" },
+    { label: "8 Points", value: "EIGHT" },
+  ];
+  const tagList = [
+    { label: "ANDROID", value: "ANDROID" },
+    { label: "IOS", value: "IOS" },
+    { label: "NODE_JS", value: "NODE_JS" },
+    { label: "RAILS", value: "RAILS" },
+    { label: "REACT", value: "REACT" },
+  ];
 
   useEffect(() => {
     if (loading === false && data) {
@@ -52,6 +67,24 @@ const ModalTask = ({
     }
   }, [loading, data]);
 
+  useEffect(() => {
+    if (visible && taskUpdated) {
+      setDate(new Date(taskUpdated.dueDate));
+      setPoints(
+        pointsEstimate.find(
+          (element) => element.value === taskUpdated.pointEstimate
+        )
+      );
+      setUser({
+        value: taskUpdated.assignee.id,
+        label: taskUpdated.assignee.fullName,
+        avatar: taskUpdated.assignee.avatar,
+      });
+      setTags(tagList.find((element) => element.value === taskUpdated.tags[0]));
+      setTaskName(taskUpdated.name);
+    }
+  }, [visible]);
+
   const onCancelTask = () => {
     setTaskName("");
     setTags(undefined);
@@ -61,16 +94,17 @@ const ModalTask = ({
     onCancel();
   };
 
-  const onSaveTask = () => {
+  const onSaveTask = async () => {
     const task = {
       name: taskName,
       dueDate: date,
       pointEstimate: points?.value,
-      status: "BACKLOG",
+      status: taskUpdated ? taskUpdated.status : "BACKLOG",
       tags: [tags?.value] as string[],
-      assignee: { ...user, id: user?.value },
+      assigneeId: user?.value,
+      id: taskUpdated ? taskUpdated.id : null,
     };
-    onSave(task);
+    await onSave(task);
     onCancelTask();
   };
 
@@ -81,6 +115,7 @@ const ModalTask = ({
       onSave={onSaveTask}
       labelSaveButton={labelSaveButton}
       visible={visible}
+      disabled={!points || !tags || !date || !taskName || !user}
     >
       {loading ? (
         <Loader size={50} />
@@ -94,13 +129,7 @@ const ModalTask = ({
           <div className="flex flex-row flex-x-2 w-full justify-center items-center gap-y-4 bg-gray3">
             <Dropdown
               label="Estimate"
-              options={[
-                { label: "0 Points", value: "ZERO" },
-                { label: "1 Points", value: "ONE" },
-                { label: "2 Points", value: "TWO" },
-                { label: "3 Points", value: "FOUR" },
-                { label: "4 Points", value: "EIGHT" },
-              ]}
+              options={pointsEstimate}
               icon={Points}
               value={points}
               onChange={(value: OptionsDropdown) => setPoints(value)}
@@ -113,13 +142,7 @@ const ModalTask = ({
             />
             <Dropdown
               label="Label"
-              options={[
-                { label: "ANDROID", value: "ANDROID" },
-                { label: "IOS", value: "IOS" },
-                { label: "NODE_JS", value: "NODE_JS" },
-                { label: "RAILS", value: "RAILS" },
-                { label: "REACT", value: "REACT" },
-              ]}
+              options={tagList}
               value={tags}
               onChange={(value: OptionsDropdown) => setTags(value)}
               icon={Tags}

@@ -4,38 +4,28 @@ import TaskCardBody from "./partials/TaskCardBody";
 import TaskCardFooter from "./partials/TaskCardFooter";
 
 interface TaskCardProps {
-  name: string;
-  points: string;
-  date: string;
   icon?: string;
-  tags: string[];
   comment: number;
-  diagram: number;
-  user: {
-    avatar: string;
-    fullName: string;
-  };
+  task: Task;
 }
 
-const TaskCard = memo(
-  ({
-    name,
-    points,
-    date,
-    icon,
-    tags,
-    comment,
-    diagram,
-    user,
-  }: TaskCardProps) => {
-    return (
-      <div className="flex flex-col w-[348px] bg-gray1 rounded-[8px] p-4 gap-y-4">
-        <TaskCardHeader name={name} />
-        <TaskCardBody points={points} date={date} icon={icon} tags={tags} />
-        <TaskCardFooter comment={comment} diagram={diagram} user={user} />
-      </div>
-    );
-  }
-);
+const TaskCard = memo(({ icon, comment, task }: TaskCardProps) => {
+  return (
+    <div className="flex flex-col w-[348px] bg-gray1 rounded-[8px] p-4 gap-y-4">
+      <TaskCardHeader name={task.name} task={task} />
+      <TaskCardBody
+        points={task.pointEstimate}
+        date={task.dueDate}
+        icon={icon}
+        tags={task.tags}
+      />
+      <TaskCardFooter
+        comment={comment}
+        diagram={task.position}
+        user={task.assignee}
+      />
+    </div>
+  );
+});
 
 export default TaskCard;

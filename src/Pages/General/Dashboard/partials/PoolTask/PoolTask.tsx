@@ -11,15 +11,10 @@ const PoolTask = ({ title, taskList }: PoolTaskProps) => {
         <p className="text-[18px] leading-[32px] font-semibold">{title}</p>
         {taskList.map((task, index) => (
           <TaskCard
-            name={task.name}
-            points={task.pointEstimate}
-            date={task.dueDate}
+            task={task}
             icon="fa-solid fa-clock"
-            tags={task.tags}
             comment={0}
-            diagram={task.position}
             key={index}
-            user={task.assignee}
           />
         ))}
       </div>

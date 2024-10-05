@@ -13,12 +13,15 @@ const CalendarPicker = ({ value, onChange }: CalendarPickerProps) => {
       <img src={Calendar} alt="calendario" />
       <DatePicker
         value={value}
-        onChange={(dateInfo: DateObject) => onChange(dateInfo.toDate())}
+        onChange={(dateInfo: DateObject) => {
+          onChange(dateInfo.toDate());
+        }}
         style={{
           background: "#94979A1A",
           borderColor: "#94979A1A",
         }}
         // className="custom-input custom-calendar"
+        format="DD/MM/YYYY"
       />
     </div>
   );

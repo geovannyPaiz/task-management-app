@@ -7,6 +7,7 @@ interface ButtonProps {
   onClick: ((task: Task) => Promise<void>) | (() => void);
   loading?: boolean;
   type?: "primary" | "normal";
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -15,13 +16,14 @@ const Button = ({
   icon,
   label,
   type = "primary",
+  disabled,
 }: ButtonProps) => {
   return (
     <div
       className={cls(
         "flex h-10 w-10 justify-center items-center rounded-[8px] hover:opacity-50 cursor-pointer",
         {
-          "pointer-events-none opacity-50": loading,
+          "pointer-events-none opacity-50": loading || disabled,
           "bg-transparent": type === "normal",
           "bg-red2": type === "primary",
           "w-auto px-2": label,
@@ -30,9 +32,7 @@ const Button = ({
       onClick={onClick as MouseEventHandler<HTMLDivElement>}
     >
       {loading ? (
-        <i
-          className={`fa-duotone fa-spinner-third fa-spin text-white h-8 w-8`}
-        />
+        <i className={`fas fa-spinner fa-spin text-white h-8 w-8`} />
       ) : (
         <>{icon ? <i className={`${icon}`} /> : <p>{label}</p>}</>
       )}

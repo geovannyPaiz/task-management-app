@@ -43,6 +43,7 @@ interface ModalProps extends ChildrenJsxProp {
   loading?: boolean;
   labelSaveButton: string;
   visible: boolean;
+  disabled?: boolean;
 }
 
 interface OptionsDropdown {

@@ -52,7 +52,7 @@ const useDashboard = () => {
             pointEstimate: task.pointEstimate,
             status: task.status,
             tags: task.tags,
-            assignee: task.assignee,
+            assigneeId: task.assigneeId,
           },
         },
       });

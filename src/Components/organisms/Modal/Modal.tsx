@@ -8,6 +8,7 @@ const Modal = ({
   visible,
   onSave,
   onCancel,
+  disabled,
 }: ModalProps) => {
   if (visible) {
     return (
@@ -23,6 +24,7 @@ const Modal = ({
                 onClick={onSave}
                 loading={loading}
                 label={labelSaveButton}
+                disabled={disabled}
               />
             </div>
           </div>
