@@ -4,14 +4,15 @@ import PoolTask from "./partials/PoolTask/PoolTask";
 import useDashboard from "./hook";
 import { Loader } from "Components/atoms";
 import ModalTask from "../partials/ModalTask/ModalTask";
+import ListTask from "./partials/ListTask";
+import cls from "classnames";
 
 export const Dashboard = () => {
   const {
     value,
     setValue,
     setSearch,
-    tab,
-    setTab,
+    isDashboard,
     loading,
     poolTask,
     showModal,
@@ -32,21 +33,31 @@ export const Dashboard = () => {
             onSearch={(valueToSearch: string) => setSearch(valueToSearch)}
           />
           <TabTopBar
-            value={tab}
-            onChange={(valueTab: number) => setTab(valueTab)}
+            value={isDashboard}
             loading={loading}
             setShowModal={(showModalValue: boolean) =>
               setShowModal(showModalValue)
             }
           />
           {poolTask && (
-            <div className="flex flex-row gap-x-8 w-full overflow-x-auto">
+            <div
+              className={cls("flex gap-x-8 w-full overflow-x-auto", {
+                "flex-row": isDashboard,
+                "flex-col": !isDashboard,
+              })}
+            >
               {poolTask.map((element, index) => (
-                <PoolTask
-                  title={element.status}
-                  taskList={element.tasks}
-                  key={index}
-                />
+                <>
+                  {isDashboard ? (
+                    <PoolTask
+                      title={element.status}
+                      taskList={element.tasks}
+                      key={index}
+                    />
+                  ) : (
+                    <ListTask title={element.status} taskList={element.tasks} />
+                  )}
+                </>
               ))}
             </div>
           )}

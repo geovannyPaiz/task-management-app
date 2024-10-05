@@ -1,18 +1,12 @@
 import cls from "classnames";
 import { Button } from "Components/atoms/Button";
 interface TabTopBarProps {
-  value: number;
-  onChange: (value: number) => void;
+  value: boolean;
   loading: boolean;
   setShowModal: (value: boolean) => void;
 }
 
-const TabTopBar = ({
-  value,
-  onChange,
-  loading,
-  setShowModal,
-}: TabTopBarProps) => {
+const TabTopBar = ({ value, loading, setShowModal }: TabTopBarProps) => {
   return (
     <div className="flex flex-row w-full h-12 justify-between">
       <div className="flex flex-row">
@@ -20,19 +14,17 @@ const TabTopBar = ({
           className={cls(
             "flex fa-solid fa-bars text-gray2 h-10 w-10 justify-center items-center rounded-[8px] hover:opacity-50 cursor-pointer",
             {
-              "border-2 border-red2 text-red2": value === 0,
+              "border-2 border-red2 text-red2": !value,
             }
           )}
-          onClick={() => onChange(0)}
         />
         <i
           className={cls(
             "flex fa-solid fa-grip text-gray2 h-10 w-10 justify-center items-center rounded-[8px] hover:opacity-50 cursor-pointer",
             {
-              "border-2 border-red2 text-red2": value === 1,
+              "border-2 border-red2 text-red2": value,
             }
           )}
-          onClick={() => onChange(1)}
         />
       </div>
       <Button

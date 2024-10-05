@@ -7,7 +7,7 @@ export const menuItems = [
   },
   {
     id: 2,
-    path: "/my-tasks",
+    path: "/myTasks",
     text: "MY TASKS",
     icon: "fa-solid fa-bars",
   },
