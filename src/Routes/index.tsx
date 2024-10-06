@@ -7,6 +7,7 @@ import { Loader } from "Components/atoms";
 const Welcome = lazy(() => import("../Pages/General/Welcome"));
 const Dashboard = lazy(() => import("../Pages/General/Dashboard"));
 const MyTask = lazy(() => import("../Pages/General/Dashboard"));
+const NotFound = lazy(() => import("Pages/General/404"));
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="/" element={<Welcome />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/myTasks" element={<MyTask />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Layout>
