@@ -1,5 +1,13 @@
+# HOW TO RUN
+
+After download the repository, pleace checkout to branch development use `git checkout development`
+Use `yarn install`
+And finish using `yarn start`
+
 # task-management-app
+
 Task management app that allows you to browse and add tasks to users.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
